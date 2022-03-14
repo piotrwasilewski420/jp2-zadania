@@ -1,3 +1,4 @@
+// Autor: Paweł Olszko
 "use strict";
 
 const array = [4, 2, "a", "b", 3, "aa", "ww", 2, "ab", -2];

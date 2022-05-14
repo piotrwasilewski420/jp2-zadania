@@ -60,14 +60,16 @@ const keys = Object.keys(list).sort();
 const result = keys.reduce((acc, type, index) => {
   const temp = `${type.charAt(0).toUpperCase() + type.slice(1)}`;
 
-  const rest = [...list[type]].sort().reduce((acc, current, index) => {
-    return (
-      acc +
-      `${index + 1}. ${current.produkt} - ${current.jednostka}: ${
-        current.ilosc
-      }\n`
-    );
-  }, "");
+  const rest = [...list[type]]
+    .sort((a, b) => a.produkt.localeCompare(b.produkt))
+    .reduce((acc, current, index) => {
+      return (
+        acc +
+        `${index + 1}. ${current.produkt} - ${current.jednostka}: ${
+          current.ilosc
+        }\n`
+      );
+    }, "");
 
   return acc + `${temp}:\n${rest}`;
 }, "");

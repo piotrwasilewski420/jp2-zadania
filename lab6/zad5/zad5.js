@@ -57,7 +57,7 @@ const list = shoppingList.reduce((acc, current) => {
 
 const keys = Object.keys(list).sort();
 
-const result = keys.reduce((acc, type, index) => {
+const result = keys.reduce((acc, type) => {
   const temp = `${type.charAt(0).toUpperCase() + type.slice(1)}`;
 
   const rest = [...list[type]]

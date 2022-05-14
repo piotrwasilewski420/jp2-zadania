@@ -1,4 +1,4 @@
-import { shoppingList } from "./shoppingList";
+import { shoppingList } from "./shoppingList.js";
 
 // 1
 const shoppingListWithIndexes = shoppingList.reduce((acc, current) => {
@@ -46,48 +46,33 @@ const thingsInSztuki = shoppingList.reduce((acc, current) => {
 // console.log(thingsInSztuki);
 
 // 6
-const list = shoppingList.reduce((acc, product) => {
-  if (acc[product.typ] === undefined) {
-    acc[product.typ] = [];
-    return {
-      ...acc,
-      [product.typ]: [
-        ...acc[product.typ],
-        `${acc[product.typ].length + 1}. ${product.produkt} - ${
-          product.jednostka
-        }: ${product.ilosc}`,
-      ],
-    };
-  } else {
-    return {
-      ...acc,
-      [product.typ]: [
-        ...acc[product.typ],
-        `${acc[product.typ].length + 1}. ${product.produkt} - ${
-          product.jednostka
-        }: ${product.ilosc}`,
-      ],
-    };
-  }
+const list = shoppingList.reduce((acc, current) => {
+  if (acc[current.typ] === undefined) acc[current.typ] = [];
+
+  const { produkt, ilosc, jednostka } = current;
+  acc[current.typ].push({ produkt, ilosc, jednostka });
+
+  return acc;
 }, {});
 
-const result = Object.keys(list)
-  .reduce((acc, current) => {
-    return [...acc, [current, list[current]]];
-  }, [])
-  .reduce((acc, current) => {
+const keys = Object.keys(list).sort();
+
+const result = keys.reduce((acc, type, index) => {
+  const temp = `${type.charAt(0).toUpperCase() + type.slice(1)}`;
+
+  const rest = [...list[type]].sort().reduce((acc, current, index) => {
     return (
       acc +
-      `${((string) => string.charAt(0).toUpperCase() + string.slice(1))(
-        current[0]
-      )}:\n` +
-      current[1].reduce((products, entry) => {
-        return products + entry + "\n";
-      }, "")
+      `${index + 1}. ${current.produkt} - ${current.jednostka}: ${
+        current.ilosc
+      }\n`
     );
   }, "");
 
-// console.log(result);
+  return acc + `${temp}:\n${rest}`;
+}, "");
+
+console.log(result);
 
 // 7
 const mostExpensivePrice = shoppingList.reduce((acc, product) => {

@@ -31,14 +31,12 @@ const mySeries = sortedSeries.reduce(
   (acc, serial) => {
     const { id, name, startYear, endYear, type, seasons } = serial;
 
-    const tempType = type
-      .reduce((acc, typ, index) => {
-        if (typ.length - 1 === index) {
-          return acc + typ;
-        }
-        return acc + typ + ", ";
-      }, "")
-      .slice(0, -2);
+    const tempType = type.reduce((acc, typ, index) => {
+      if (typ.length - 1 === index) {
+        return acc + typ;
+      }
+      return acc + typ + ", ";
+    }, "");
 
     let temp;
     endYear

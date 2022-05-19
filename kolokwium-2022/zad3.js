@@ -3,10 +3,7 @@
 const getCounter = (min, max) => {
   let count = min - 1;
 
-  return () => {
-    if (count + 1 > max) return undefined;
-    else return ++count;
-  };
+  return () => (count + 1 > max ? undefined : ++count);
 };
 
 const counter = getCounter(5, 7);

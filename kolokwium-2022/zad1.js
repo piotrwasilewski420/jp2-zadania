@@ -32,10 +32,7 @@ const mySeries = sortedSeries.reduce(
     const { id, name, startYear, endYear, type, seasons } = serial;
 
     const tempType = type.reduce((acc, typ, index) => {
-      if (typ.length - 1 === index) {
-        return acc + typ;
-      }
-      return acc + typ + ", ";
+      typ.length - 1 === index ? acc + typ : acc + typ + ", ";
     }, "");
 
     let temp;

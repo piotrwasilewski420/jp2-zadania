@@ -29,17 +29,17 @@ Jeśli dodanie zakończy się sukcesem - wyświetli w konsoli komunikat 'Dodano'
 axios
   .get("https://jsonplaceholder.typicode.com/posts")
   .then((res) => {
-    if (res.status === 200) return res;
+    if (res.ok) return res;
     else throw "Błąd";
-  })
-  .catch((err) => {
-    console.log(err);
   })
   .then((res) => {
     const { body: data, headers } = res;
 
     console.log(data);
     console.log(headers);
+  })
+  .catch((err) => {
+    console.log(err);
   });
 
 // 1.2
@@ -57,9 +57,9 @@ axios
       return res;
     } else throw "Błąd";
   })
+  .then(() => {
+    console.log(res.data.idUser);
+  })
   .catch((err) => {
     console.log(err);
-  })
-  .then((res) => {
-    console.log(res.data.idUser);
   });

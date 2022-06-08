@@ -2,8 +2,6 @@
 
 import { Vector2 } from "./Vector2";
 import { Ship } from "./Ship";
-import { RebelShip } from "./RebelShip";
-import { DeathStar } from "./DeathStar";
 
 // Vector2
 const vector = new Vector2(10, 20);

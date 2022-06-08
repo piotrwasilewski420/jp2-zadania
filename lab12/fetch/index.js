@@ -23,19 +23,19 @@ Jeśli dodanie zakończy się sukcesem - wyświetli w konsoli komunikat 'Dodano'
 */
 
 // 1.
-fetch("https://jsonplaceholder.typicode.com/posts", { method: "GET" })
+fetch("https://jsonplaceholder.typicode.com/posts")
   .then((res) => {
-    if (res.status === 200) return res;
+    if (res.ok) return res.json();
     else throw "Błąd";
-  })
-  .catch((err) => {
-    console.log(err);
   })
   .then((res) => {
     const { body: data, headers } = res;
 
     console.log(data);
     console.log(headers);
+  })
+  .catch((err) => {
+    console.log(err);
   });
 
 // 2.
@@ -50,14 +50,14 @@ fetch("https://jsonplaceholder.typicode.com/todos", {
   body: JSON.stringify(todo),
 })
   .then((res) => {
-    if (res.status === 201) {
+    if (res.ok) {
       console.log("Dodano");
       return res.json();
     } else throw "Błąd";
   })
-  .catch((err) => {
-    console.log(err);
-  })
   .then(() => {
     console.log(todo.idUser);
+  })
+  .catch((err) => {
+    console.log(err);
   });

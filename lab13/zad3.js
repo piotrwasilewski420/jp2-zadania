@@ -8,7 +8,6 @@ import { inspect } from "util"; // funkcja ta loguje w nodzie cały obiekt ze ws
 
   try {
     const entries = [];
-    console.log(ids);
     for (const index of ids) {
       const post = await axios.get(
         `https://jsonplaceholder.typicode.com/posts/${index}`
@@ -37,11 +36,10 @@ import { inspect } from "util"; // funkcja ta loguje w nodzie cały obiekt ze ws
       return { entry, comments: comments[index] };
     });
 
+
     console.log(
-      console.log(
-        inspect(result, { showHidden: false, depth: null, colors: true })
-      )
-    );
+      inspect(result, { showHidden: false, depth: null, colors: true })
+    )
   } catch (e) {
     console.log(e);
   }

@@ -4,7 +4,7 @@ const connect = (funTab, fun) => {
     return Promise.all([...promises]).then((result) => {
         return result.map((res) => {
             return [res, fun(res)];
-        });
+        }).sort((a, b) => a - b);
     });
 };
 (async () => {
